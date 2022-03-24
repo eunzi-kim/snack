@@ -11,6 +11,7 @@
     "clean": "gh-pages-clean",
     "test:unit": "vue-cli-service test:unit"
   },
+  "homepage": ".",
   "dependencies": {
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
