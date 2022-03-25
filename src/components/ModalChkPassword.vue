@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     noneModal() {
-      document.querySelector('.add-mem').classList.add('none')
+      document.querySelector('.chk-pwd').classList.add('none')
     },
     onSelectStore() {
       if (this.password === "qwer1234!!") {
