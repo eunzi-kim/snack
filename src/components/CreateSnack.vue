@@ -185,12 +185,6 @@ export default {
       alert("음식점이 선택되지 않았습니다.")
       this.$router.push('/pickshop/shop')
     }
-  },
-  created() {
-    if (this.todayFood.shopName === undefined || this.todayDrink.shopName === undefined) {
-      alert("음식점이 선택되지 않았습니다.")
-      this.$router.push('/pickshop/shop')
-    }
   }
 }
 </script>
