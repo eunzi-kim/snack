@@ -20,7 +20,7 @@ export default {
       document.querySelector('.del-mem').classList.add('none')
     },
     async onDeleteMember() {
-      const url = `https://sheltered-castle-40247.herokuapp.com/api/member/${this.userInfo.id}`
+      const url = `http://.82:8080/api/member/${this.userInfo.id}`
       await axios.delete(url)
       .then(res => {
         if (res.data.status === 'SUCCESS') {

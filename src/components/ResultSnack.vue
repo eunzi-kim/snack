@@ -57,6 +57,10 @@ export default {
   },
   created() {
     this.$store.dispatch('getTodayStore')
+    if (this.todayFoodStore.shopName === undefined || this.todayDrinkStore.shopName === undefined) {
+      alert("음식점이 선택되지 않았습니다.")
+      this.$router.push('/pickshop/shop')
+    }
   }
 }
 </script>
