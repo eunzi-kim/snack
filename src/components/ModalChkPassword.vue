@@ -25,15 +25,20 @@ export default {
       password: "",
     }
   },
+  props: {
+    foodData: {},
+    drinkData: {}
+  },
   methods: {
     noneModal() {
       document.querySelector('.chk-pwd').classList.add('none')
     },
     onSelectStore() {
       if (this.password === "qwer1234!!") {
+
         this.$store.dispatch('todaySelectStore', {
-          'foodShop': this.selectFood,
-          'drinkShop': this.selectDrink
+          'foodShop': this.foodData,
+          'drinkShop': this.drinkData
         })
         this.$router.push('/snack/home')
       } else {

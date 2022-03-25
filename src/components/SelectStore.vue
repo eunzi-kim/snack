@@ -30,7 +30,7 @@
       <button class="btn" id="create-snack-btn" @click="onClickSelectStore">오늘의 간식 시작</button>
   </div>
   <ModalDelStore class="del-store none" />
-  <ModalChkPassword class="chk-pwd none" />
+  <ModalChkPassword class="chk-pwd none" :foodData="selectFood" :drinkData="selectDrink" />
 </template>
 
 <script>
