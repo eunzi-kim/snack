@@ -95,7 +95,6 @@ export default {
     }
   },  
   mounted() {
-    this.$store.dispatch('getTodayStore')
     this.$store.dispatch('getAllMemberList')
     this.$store.dispatch('getAllFoodStore')
     this.$store.dispatch('getAllDrinkStore')

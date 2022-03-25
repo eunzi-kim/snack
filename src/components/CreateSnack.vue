@@ -180,7 +180,8 @@ export default {
         this.viewDrink = this.drinkSnack + " & " + this.drinkOption
       }
     }
-
+  },
+  updated() {
     if (this.todayFood.shopName === undefined || this.todayDrink.shopName === undefined) {
       alert("음식점이 선택되지 않았습니다.")
       this.$router.push('/pickshop/shop')

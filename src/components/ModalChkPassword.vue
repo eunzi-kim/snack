@@ -34,7 +34,7 @@ export default {
       document.querySelector('.chk-pwd').classList.add('none')
     },
     onSelectStore() {
-      if (this.password === "qwer1234!!") {
+      if (this.password === "akflahdjwls") {
         this.$store.dispatch('todaySelectStore', {
           'foodShop': this.foodData,
           'drinkShop': this.drinkData
