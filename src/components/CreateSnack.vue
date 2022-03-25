@@ -3,7 +3,7 @@
     <div id="snack-left">
       <h1>🧁{{todayFood.shopName}}🧁</h1>
       <button id="snack-menu-url" @click="openUrl('food')">메뉴판 홈페이지</button>
-      <input id="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="viewFood"/>
+      <input class="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="viewFood"/>
       <div id="food">
         <div v-for="(item, idx) in todayFoodMenu" :key="idx" class="menu" @click="onClickFood(item)">{{item}}</div>
       </div>
@@ -18,7 +18,7 @@
     <div id="snack-right">
       <h1>🥤{{todayDrink.shopName}}🥤</h1>
       <button id="snack-menu-url" @click="openUrl('drink')">메뉴판 홈페이지</button>
-      <div><input id="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="viewDrink" /></div> 
+      <div><input class="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="viewDrink" /></div> 
       <div id="drink">
         <div v-for="(item, idx) in todayDrinkMenu" :key="idx" class="menu" @click="onClickDrink(item)">{{item}}</div>
       </div>
@@ -211,7 +211,7 @@ export default {
     cursor: pointer;
   }
 
-  #snack-input {
+  .snack-input {
     width: 30vw;
     height: 3rem;
     font-size: 1rem;

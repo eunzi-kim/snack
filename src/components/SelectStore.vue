@@ -5,7 +5,7 @@
         <h1>디저트</h1>
         <button class="btn" id="select-btn" @click="addFoodStore">Add Store</button>
       </div>      
-      <input id="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="selectFood.shopName" />
+      <input class="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="selectFood.shopName" />
       <div id="select-food">
         <div v-for="(item, idx) in allFoodStroeList" :key="idx" class="menu" @click="onClickFoodStore(item)">
           {{ item.shopName }}<button id="delete-menu" @click="onDeleteShop(item)">❌</button>
@@ -18,7 +18,7 @@
         <h1>음료</h1>
         <button class="btn" id="select-btn" @click="addDrinkStore">Add Store</button>
       </div>      
-      <div><input id="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="selectDrink.shopName" /></div> 
+      <div><input class="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="selectDrink.shopName" /></div> 
       <div id="select-drink">
         <div v-for="(item, idx) in allDrinkStoreList" :key="idx" class="menu" @click="onClickDrinkStore(item)">
           {{ item.shopName }}<button id="delete-menu" @click="onDeleteShop(item)">❌</button>

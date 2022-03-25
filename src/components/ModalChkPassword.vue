@@ -7,6 +7,7 @@
         id="modal-input"
         type="password"
         v-model="password"
+        @keyup.enter="onSelectStore"
       />
       <div>
         <button class="btn add-btn" @click="onSelectStore">시작</button>

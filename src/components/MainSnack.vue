@@ -4,7 +4,7 @@
       <div id="no-select">
         <h2 id="select-title">미선택자</h2>
         <div id="no-member">
-          <span v-for="item in allMemberList" :key="item.id">
+          <span v-for="(item, idx) in allMemberList" :key="idx">
             <h4 v-if="!item.food || !item.drink">{{ item.name }}</h4>
           </span>     
         </div>        
@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in memberList" :key="item.id">
+            <tr v-for="(item, idx) in memberList" :key="idx">
               <td @click="delMember(item.name, item.id)" id="item-name">{{ item.name }}</td>
               <div v-if="item.drink || item.food" class="update-snack" @click="onClick(item.id)">
                 <td v-if="item.foodOption">{{ item.food }} & {{ item.foodOption }}</td>
