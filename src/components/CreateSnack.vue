@@ -92,6 +92,7 @@ export default {
       if (item === 'Random') {
         item = this.todayFoodMenu[Math.floor(Math.random()*(this.todayFoodMenu.length-2)+2)]
       }
+      this.foodOption = ""
       this.foodSnack = item
       this.onViewFood()
     },
@@ -99,6 +100,7 @@ export default {
       if (item === 'Random') {
         item = this.todayDrinkMenu[Math.floor(Math.random()*(this.todayDrinkMenu.length-2)+2)]
       }
+      this.drinkOption = ""
       this.drinkSnack = item 
       this.onViewDrink()
     },
