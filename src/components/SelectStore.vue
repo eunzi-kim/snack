@@ -27,18 +27,21 @@
     </div>   
   </div>
   <div>
-      <button class="btn" id="create-snack-btn" @click="onSelectTodayStore">오늘의 간식 시작</button>
+      <button class="btn" id="create-snack-btn" @click="onClickSelectStore">오늘의 간식 시작</button>
   </div>
   <ModalDelStore class="del-store none" />
+  <ModalChkPassword class="chk-pwd none" />
 </template>
 
 <script>
 import ModalDelStore from '@/components/ModalDelStore';
+import ModalChkPassword from '@/components/ModalChkPassword';
 
 export default {
   name: 'SelectStore',
   components: {
-    ModalDelStore
+    ModalDelStore,
+    ModalChkPassword
   },
   data() {
     return {
@@ -61,16 +64,12 @@ export default {
     onClickDrinkStore(item) {
       this.selectDrink = item
     },
-    onSelectTodayStore() {
+    onClickSelectStore() {
       if (this.selectFood.shopName && this.selectDrink.shopName) {
-        this.$store.dispatch('todaySelectStore', {
-          'foodShop': this.selectFood,
-          'drinkShop': this.selectDrink
-        })
-        this.$router.push('/snack/home')
+        document.querySelector('.chk-pwd').classList.remove('none')
       } else {
         alert("디저트와 음료를 모두 선택해주세요.")
-      }      
+      } 
     },
     onDeleteShop(item) {
       this.$store.commit('setDeleteShop', item)
