@@ -35,11 +35,11 @@ export default {
     },
     onSelectStore() {
       if (this.password === "qwer1234!!") {
-
         this.$store.dispatch('todaySelectStore', {
           'foodShop': this.foodData,
           'drinkShop': this.drinkData
         })
+        this.$store.dispatch('getTodayStore')
         this.$router.push('/snack/home')
       } else {
         alert("비밀번호를 확인해주세요.")
