@@ -110,7 +110,6 @@ export default {
     this.$store.dispatch('getAllMemberList')
     this.$store.dispatch('getAllFoodStore')
     this.$store.dispatch('getAllDrinkStore')
-    // console.log(this.todayFoodStore)
   }
 }
 </script>
