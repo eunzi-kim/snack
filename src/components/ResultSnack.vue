@@ -11,9 +11,9 @@
         </span>
       </h1>
       <div id="result-info">
-        <div v-for="(item, idx) in resultInfo.food" :key="idx" class="result-menu-info">
-          <span id="result-menu">{{ idx }}</span>
-          <span>{{ item }}명</span>
+        <div v-for="(item, idx) in Object.keys(resultInfo.food).sort()" :key="idx" class="result-menu-info">
+          <span id="result-menu">{{ item }}</span>
+          <span>{{ resultInfo.food[item] }}명</span>
         </div>
       </div>
     </div>
@@ -29,9 +29,9 @@
         </span>
       </h1>
       <div id="result-info">
-        <div v-for="(item, idx) in resultInfo.drink" :key="idx" class="result-menu-info">
-          <span id="result-menu">{{ idx }}</span>
-          <span>{{ item }}명</span>
+        <div v-for="(item, idx) in Object.keys(resultInfo.drink).sort()" :key="idx" class="result-menu-info">
+          <span id="result-menu">{{ item }}</span>
+          <span>{{ resultInfo.drink[item] }}명</span>
         </div>
       </div>
     </div>
