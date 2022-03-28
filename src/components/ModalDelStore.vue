@@ -1,7 +1,8 @@
 <template>
   <div class="modal">
     <div class="modal-body">
-      <h1>{{ storeInfo.item.shopName || "" }}을 정말 삭제하시겠습니까?</h1>
+      <h1 v-if="storeInfo.item === undefined"> 을 정말 삭제하시겠습니까?</h1>
+      <h1 v-else>{{ storeInfo.item.shopName }}을 정말 삭제하시겠습니까?</h1>
       <div>
         <button class="btn add-btn" @click="onDeleteMember">삭제</button>
         <button class="btn cancel-btn" @click="noneModal">취소</button>
