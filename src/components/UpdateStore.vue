@@ -74,7 +74,7 @@ export default {
     },
     async postUpdateShop() {
       const id = this.storeInfo.id
-      const url = `http://10.10.1.82:8080/api/shop/${id}`
+      const url = `https://sheltered-castle-40247.herokuapp.com/api/shop/${id}`
       const headers = {
         'Content-Type': 'application/json'
       }

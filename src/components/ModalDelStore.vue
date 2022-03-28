@@ -23,7 +23,7 @@ export default {
       console.log(this.storeInfo.item)
       const idx = this.storeInfo.item.id
       const type = this.storeInfo.type
-      const url = `http://10.10.1.82:8080/api/shop/${type}/${idx}`
+      const url = `https://sheltered-castle-40247.herokuapp.com/api/shop/${type}/${idx}`
       await axios.delete(url)
       .then(res => {
         if (res.data.status === "SUCCESS") {

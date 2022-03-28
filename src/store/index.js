@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createStore } from 'vuex';
 import createPersistedState from "vuex-persistedstate";
 
-axios.defaults.baseURL = 'http://10.10.1.82:8080/api'
+axios.defaults.baseURL = 'https://sheltered-castle-40247.herokuapp.com/api'
 
 const store = createStore({
   state: () => ({

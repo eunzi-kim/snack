@@ -117,7 +117,7 @@ export default {
     async onClickSnack() {
       if (this.foodSnack && this.drinkSnack) {
         let chk = [0, 0]
-        const url = 'http://10.10.1.82:8080/api/snack/pick'
+        const url = 'https://sheltered-castle-40247.herokuapp.com/api/snack/pick'
         const foodData = {
           "memberId": this.memberId,
           "option": this.foodOption,

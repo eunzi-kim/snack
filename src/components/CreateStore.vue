@@ -72,7 +72,7 @@ export default {
       this.snackList.splice(idx, 1)
     },
     async postAddShop() {
-      const url = 'http://10.10.1.82:8080/api/shop'
+      const url = 'https://sheltered-castle-40247.herokuapp.com/api/shop'
       const headers = {
         'Content-Type': 'application/json'
       }
