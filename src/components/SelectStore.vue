@@ -149,6 +149,7 @@ export default {
     width: 35vw;
     height: 50vh;
     overflow-y: auto;
+    overflow-x: hidden;
     margin: 1rem;
     display: flex;
     flex-direction: column;
