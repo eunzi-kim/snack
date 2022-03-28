@@ -173,7 +173,9 @@ export default {
 
   .select-store {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    width: 80%;
   }
 
   .ud-store {
