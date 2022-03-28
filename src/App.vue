@@ -29,6 +29,13 @@ export default {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'IM_Hyemin-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Regular.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #app {
   font-family: CBNUJIKJI, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

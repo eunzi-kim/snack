@@ -22,7 +22,7 @@ export default {
 <style>
   #nav {
     display: flex;
-    /* width: 100vw; */
+    font-family: 'IM_Hyemin-Regular';
     justify-content: space-around;
     font-size: 1.5rem;
   }
