@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
     <div class="modal-body">
-      <h1>{{ storeInfo.shopName }}을 정말 삭제하시겠습니까?</h1>
+      <h1>{{ storeInfo.item.shopName }}을 정말 삭제하시겠습니까?</h1>
       <div>
         <button class="btn add-btn" @click="onDeleteMember">삭제</button>
         <button class="btn cancel-btn" @click="noneModal">취소</button>
@@ -20,8 +20,10 @@ export default {
       document.querySelector('.del-store').classList.add('none')
     },
     async onDeleteMember() {
-      const idx = this.storeInfo.id
-      const url = `https://sheltered-castle-40247.herokuapp.com/api/snack/shop/${idx}`
+      console.log(this.storeInfo.item)
+      const idx = this.storeInfo.item.id
+      const type = this.storeInfo.type
+      const url = `http://10.10.1.82:8080/api/shop/${type}/${idx}`
       await axios.delete(url)
       .then(res => {
         if (res.data.status === "SUCCESS") {

@@ -31,7 +31,7 @@ export default {
       document.querySelector('.add-mem').classList.add('none')
     },
     async onCreateMember() {
-      const url = 'https://sheltered-castle-40247.herokuapp.com/api/member'
+      const url = 'http://10.10.1.82:8080/api/member'
       const headers = {
        'Content-Type': 'application/json'
       }

@@ -117,7 +117,7 @@ export default {
     async onClickSnack() {
       if (this.foodSnack && this.drinkSnack) {
         let chk = [0, 0]
-        const url = 'https://sheltered-castle-40247.herokuapp.com/api/snack/pick'
+        const url = 'http://10.10.1.82:8080/api/snack/pick'
         const foodData = {
           "memberId": this.memberId,
           "option": this.foodOption,
@@ -185,7 +185,7 @@ export default {
   },
   updated() {
     if (this.todayFood.shopName === undefined || this.todayDrink.shopName === undefined) {
-      alert("음식점이 선택되지 않았습니다.")
+      alert('오늘의 가게가 선택되지 않았습니다.')
       this.$router.push('/pickshop/shop')
     }
   }

@@ -7,8 +7,12 @@
       </div>      
       <input class="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="selectFood.shopName" />
       <div id="select-food">
-        <div v-for="(item, idx) in allFoodStroeList" :key="idx" class="menu" @click="onClickFoodStore(item)">
-          {{ item.shopName }}<button id="delete-menu" @click="onDeleteShop(item)">❌</button>
+        <div v-for="(item, idx) in allFoodStroeList" :key="idx" class="menu select-store" @click="onClickFoodStore(item)">
+          {{ item.shopName }}
+          <div class="ud-store">
+            <button id="update-menu" @click="onUpdateShop(item.id, 'FOOD')">📝</button>
+            <button id="delete-menu" @click="onDeleteShop(item, 'FOOD')">❌</button>
+          </div>          
         </div>
       </div>
     </div>
@@ -20,8 +24,12 @@
       </div>      
       <div><input class="snack-input" disabled placeholder="선택하면 자동 입력됩니다." v-model="selectDrink.shopName" /></div> 
       <div id="select-drink">
-        <div v-for="(item, idx) in allDrinkStoreList" :key="idx" class="menu" @click="onClickDrinkStore(item)">
-          {{ item.shopName }}<button id="delete-menu" @click="onDeleteShop(item)">❌</button>
+        <div v-for="(item, idx) in allDrinkStoreList" :key="idx" class="menu select-store" @click="onClickDrinkStore(item)">
+          {{ item.shopName }}
+          <div class="ud-store">
+            <button id="update-menu" @click="onUpdateShop(item.id, 'DRINK')">📝</button>
+            <button id="delete-menu" @click="onDeleteShop(item, 'DRINK')">❌</button>
+          </div>  
         </div>
       </div>
     </div>   
@@ -71,8 +79,12 @@ export default {
         alert("디저트와 음료를 모두 선택해주세요.")
       } 
     },
-    onDeleteShop(item) {
-      this.$store.commit('setDeleteShop', item)
+    onUpdateShop(id, type) {
+      this.$store.dispatch('getUpdateStoreInfo', {type: type, id: id})
+      this.$router.push(`/pickshop/update/${id}`)
+    },
+    onDeleteShop(item, type) {
+      this.$store.commit('setDeleteShop', {item: item, type: type})
       document.querySelector('.del-store').classList.remove('none')
     }
   },
@@ -117,14 +129,16 @@ export default {
     margin-left: 4rem;
   }
 
+  #update-menu,
   #delete-menu {
-    margin-left: 3rem;
+    margin: 0 0.5rem;
     border: none;
     background-color: #FE929F;
     border-radius: 5px;
     padding: 0.5rem 1rem;
   }
 
+  #update-menu:hover,
   #delete-menu:hover {
     cursor: pointer;
     background-color: #C4C4C4;
@@ -155,6 +169,15 @@ export default {
   #select-food::-webkit-scrollbar-track,
   #select-drink::-webkit-scrollbar-thumb { 
     background-color: none;
+  }
+
+  .select-store {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ud-store {
+    margin-left: 3rem;
   }
 
   .none {

@@ -58,7 +58,10 @@ export default {
   },
   updated() {
     if (this.todayFoodStore.shopName === undefined || this.todayDrinkStore.shopName === undefined) {
-      alert("음식점이 선택되지 않았습니다.")
+      alert('오늘의 가게가 선택되지 않았습니다.')
+      this.$router.push('/pickshop/shop')
+    } else if (this.todayFoodStore.id === 0 || this.todayDrinkStore.id === 0) {
+      alert('오늘의 가게가 선택되지 않았습니다.')
       this.$router.push('/pickshop/shop')
     }
   }

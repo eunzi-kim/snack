@@ -10,6 +10,7 @@ import ResultView from '@/pages/ResultView';
 import StoreView from '@/pages/StoreView';
 import SelectStoreView from '@/pages/SelectStoreView';
 import CreateStoreView from '@/pages/CreateStoreView';
+import UpdateStoreView from '@/pages/UpdateStoreView';
 
 const routes = [
   {
@@ -64,7 +65,12 @@ const routes = [
         path: '/pickshop/create',
         name: 'CreateStoreView',
         component: CreateStoreView
-      }
+      },
+      {
+        path: '/pickshop/update/:shopId',
+        name: 'UpdateStoreView',
+        component: UpdateStoreView
+      },
     ]
   }
 ]

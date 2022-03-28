@@ -1,28 +1,28 @@
  <template>
-  <div id="create-store">
-    <h1 v-if="addShopType==='FOOD'" id="create-store-title">디저트</h1>
-    <h1 v-else-if="addShopType==='DRINK'" id="create-store-title">음료</h1>
+  <div id="update-store">
+    <h1 v-if="storeInfo.snackType==='FOOD'" id="update-store-title">디저트</h1>
+    <h1 v-else-if="storeInfo.snackType==='DRINK'" id="update-store-title">음료</h1>
     <div>
-      <button class="btn btn-activate c-storeName" id="create-store-category" @click="onClickCategory('storeName')">가게이름</button>
-      <button class="btn c-url" id="create-store-category" @click="onClickCategory('url')">메뉴판 URL</button>
-      <button class="btn c-menu" id="create-store-category" @click="onClickCategory('menu')">메뉴</button>
+      <button class="btn btn-activate c-storeName" id="update-store-category" @click="onClickCategory('storeName')">가게이름</button>
+      <button class="btn c-url" id="update-store-category" @click="onClickCategory('url')">메뉴판 URL</button>
+      <button class="btn c-menu" id="update-store-category" @click="onClickCategory('menu')">메뉴</button>
     </div>
     <div>
-      <input v-if="chkBtn==='storeName'" id="create-store-input" placeholder="가게이름을 입력해주세요" v-model="inputText" @keyup.enter="onAddInput" />
-      <input v-else-if="chkBtn==='url'" id="create-store-input" placeholder="메뉴판 URL 주소를 입력해주세요" v-model="inputText" @keyup.enter="onAddInput" />
-      <input v-else id="create-store-input" placeholder="메뉴를 입력해주세요" v-model="inputText" @keyup.enter="onAddInput" />
+      <input v-if="chkBtn==='storeName'" id="update-store-input" placeholder="가게이름을 입력해주세요" v-model="inputText" @keyup.enter="onAddInput" />
+      <input v-else-if="chkBtn==='url'" id="update-store-input" placeholder="메뉴판 URL 주소를 입력해주세요" v-model="inputText" @keyup.enter="onAddInput" />
+      <input v-else id="update-store-input" placeholder="메뉴를 입력해주세요" v-model="inputText" @keyup.enter="onAddInput" />
       <button class="btn" @click="onAddInput">추가</button>
     </div>
-    <div id="create-store-info">
+    <div id="update-store-info">
       <h3><span id="info-label">Store Name</span> {{ storeName }}</h3>
       <h3><span id="info-label">Menu URL Address</span> {{ menuURI }}</h3>
       <h3><span id="info-label-m">Menu</span> 
-        <div v-for="(item, idx) in snackList" :key="idx" id="create-store-menu">{{ item }}
+        <div v-for="(item, idx) in snackList" :key="idx" id="update-store-menu">{{ item }}
           <button id="delete-menu" @click="onDeleteMenu(idx)">❌</button>
         </div>
       </h3>
     </div>
-    <button class="btn" id="create-store-btn" @click="onAddShop">등록</button>
+    <button class="btn" id="update-store-btn" @click="onUpdateShop">수정</button>
   </div>
 </template>
 
@@ -30,10 +30,10 @@
 import axios from 'axios';
 
 export default {
-  name: 'CreateStore',
+  name: 'UpdateStore',
   computed: {
-    addShopType() {
-      return this.$store.getters.getAddShopType
+    storeInfo() {
+      return this.$store.getters.getUpdateStoreInfo
     }
   },
   data() {
@@ -41,8 +41,9 @@ export default {
       "storeName": "",
       "menuURI": "",
       "snackList": [],
-      "chkBtn": "storeName",
+      "chkBtn": "menu",
       "inputText": "",
+      "storeType": "",
       "chkClick": 0
     }
   },
@@ -71,8 +72,9 @@ export default {
     onDeleteMenu(idx) {
       this.snackList.splice(idx, 1)
     },
-    async postAddShop() {
-      const url = 'http://10.10.1.82:8080/api/shop'
+    async postUpdateShop() {
+      const id = this.storeInfo.id
+      const url = `http://10.10.1.82:8080/api/shop/${id}`
       const headers = {
         'Content-Type': 'application/json'
       }
@@ -80,41 +82,49 @@ export default {
         "menuURI": this.menuURI,
         "shopName": this.storeName,
         "snackList": this.snackList,
-        "snackType": this.addShopType
+        "snackType": this.storeType
       }
-      await axios.post(url, data, { headers })
+      await axios.put(url, data, { headers })
       .then(res => {
         if (res.data.status === "SUCCESS") {
-          alert("성공적으로 가게가 추가되었습니다.")
+          alert("성공적으로 가게가 수정되었습니다.")
           this.$router.push('/pickshop/shop');
         }
       })
+      .catch(err => {
+        console.log(err.response)
+      })
     },
-    onAddShop() {
-
-      if (this.menuURI && this.storeName && this.snackList.length && this.addShopType && this.chkClick === 0) {
+    onUpdateShop() {
+      if (this.menuURI && this.storeName && this.snackList.length && this.storeType && this.chkClick === 0) {
         this.chkClick += 1
-        this.postAddShop()
+        this.postUpdateShop()  
       } else if (this.chkClick === 0) {
         alert("정보를 모두 입력해주세요.")
       }      
     }
+  },
+  updated() {
+    this.storeName = this.storeInfo.shopName
+    this.menuURI = this.storeInfo.menuURI
+    this.snackList = this.storeInfo.snackList
+    this.storeType = this.storeInfo.snackType
   }
 }
 </script>
 
 <style>
-  #create-store {
+  #update-store {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #create-store-title {
+  #update-store-title {
     margin: 2rem 0;
   }
 
-  #create-store-category {
+  #update-store-category {
     background-color: #FE929F;
     border-radius: 0;
     padding: 0.5rem 2.5rem;
@@ -122,7 +132,7 @@ export default {
     font-size: 1.3rem;
   }
 
-  #create-store-category:hover {
+  #update-store-category:hover {
     cursor: pointer;
     background-color: #FCDFF3;
   }
@@ -131,7 +141,7 @@ export default {
     background-color: #FCDFF3 !important;
   }
 
-  #create-store-input {
+  #update-store-input {
     margin: 1rem 0;
     height: 2rem;
     width: 50vw;
@@ -140,7 +150,7 @@ export default {
     font-weight: bold;
   }
   
-  #create-store-info {
+  #update-store-info {
     margin-top: 1rem;
     height: 37.5vh;
     width: 50vw;
@@ -149,16 +159,16 @@ export default {
     overflow-y: auto;
   }
 
-  #create-store-info::-webkit-scrollbar {
+  #update-store-info::-webkit-scrollbar {
     width: 15px;
   }
 
-  #create-store-info::-webkit-scrollbar-thumb {
+  #update-store-info::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: #ECE4E2;
   }
 
-  #create-store-info::-webkit-scrollbar-track { 
+  #update-store-info::-webkit-scrollbar-track { 
     background-color: none;
   }
 
@@ -172,11 +182,11 @@ export default {
     margin-right: 0;
   }
 
-  #create-store-menu {
+  #update-store-menu {
     margin: 0.5rem 0;
   }
 
-  #create-store-btn {
+  #update-store-btn {
     font-size: 1.5rem;
     position: fixed;
     left: 50%;

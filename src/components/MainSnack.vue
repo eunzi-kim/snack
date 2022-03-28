@@ -71,11 +71,23 @@ export default {
     },
     allMemberList() {
       return this.$store.getters.getAllMemberList
+    },
+    todayFoodStore() {
+      return this.$store.getters.getTodayFoodStore
+    },
+    todayDrinkStore() {
+      return this.$store.getters.getTodayDrinkStore
     }
   },
   methods: {
     onClick(idx) {
-      this.$router.push(`/snack/create/${idx}`);
+      if (this.todayFoodStore === undefined || this.todayDrinkStore === undefined) {
+        alert('오늘의 가게가 선택되지 않았습니다.')
+      } else if (this.todayFoodStore.id === 0 || this.todayDrinkStore.id === 0) {
+        alert('오늘의 가게가 선택되지 않았습니다.')
+      } else {
+        this.$router.push(`/snack/create/${idx}`);
+      }      
     },
     addMember() {
       document.querySelector('.add-mem').classList.remove('none')
@@ -98,6 +110,7 @@ export default {
     this.$store.dispatch('getAllMemberList')
     this.$store.dispatch('getAllFoodStore')
     this.$store.dispatch('getAllDrinkStore')
+    // console.log(this.todayFoodStore)
   }
 }
 </script>
