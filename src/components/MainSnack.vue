@@ -81,6 +81,7 @@ export default {
   },
   methods: {
     onClick(idx) {
+      this.$store.dispatch('getTodayStore')
       if (this.todayFoodStore === undefined || this.todayDrinkStore === undefined) {
         alert('오늘의 가게가 선택되지 않았습니다.')
       } else if (this.todayFoodStore.id === 0 || this.todayDrinkStore.id === 0) {
