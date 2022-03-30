@@ -192,6 +192,7 @@ const store = createStore({
         const TODAY_FOOD_MENU_URL = `/shop/FOOD/${idx}`
         const res = await axios.get(TODAY_FOOD_MENU_URL)
         let data = res.data.data.snackList
+        data.sort()        
         data.unshift("Random")
         data.unshift("오늘은 패스")
         store.commit('setTodayFoodMenu', data)
@@ -200,6 +201,7 @@ const store = createStore({
         const TODAY_DRINK_MENU_URL = `/shop/DRINK/${idx}`
         const res = await axios.get(TODAY_DRINK_MENU_URL)
         let data = res.data.data.snackList
+        data.sort()
         data.unshift("Random")
         data.unshift("오늘은 패스")    
         store.commit('setTodayDrinkMenu', data)
